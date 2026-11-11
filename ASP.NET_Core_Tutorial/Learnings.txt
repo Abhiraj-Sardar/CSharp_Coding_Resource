@@ -1,0 +1,91 @@
+- program.cs is the entry file
+- .csproj is the project file
+- whenever we add a package, we need to add it's reference to the project file (.csproj)
+- if we want to add a package do the followings
+	>Tools>Nuget Package Manager>Manage NuGet Packages for Solution…
+  we can see the package reference is added in .csproj file and under the Dependencies>Packages Folder 
+
+- The main method in program.cs is responsible for doing four things. They are as follows:
+
+     - Creating the Web Host and Configuring the Services
+     - Building the Application
+     - Setting Up Endpoints, Routing, and Middleware Components
+     - Running the Application
+
+- Hosting model defines how we host our ASP.NET application. There are two ways of Hosting Model
+
+	- OutOfProcess : here our application runs on the worker process of the Kestrel server and IIS server is used as a reverse proxy that forwards incoming 			 requests to Kestral Server 
+	- InProcess: Our Application runs on IIS Server after getting the request, If the application is running then the request is send to IIS HTTP Server and 		     if not running request goes to ASP.NET Core Module which starts the application and forward the request to HTTP Server which handles HTTP
+                     header, method etc.
+
+- Make an application Hosting method as InProcess
+	- Just add "<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>" in the .csproj under the xml tag "<PropertyGroup>"
+
+- launchSettings.json file is used for
+	- Profile Configuration: Define multiple launch profiles for different scenarios (e.g., running with IIS Express, Kestrel, or using both IIS and Kestrel).
+	- Environment Variables: Specifies environment variables that are available when the application runs (e.g., Development, Staging, Production),
+	- Application URLs: Specify the URLs the application will listen on during development.
+	- Launch Browser: This setting determines whether a browser should be automatically launched when the application starts and which URL it should open.
+
+- launchSettings.json file is used only in our local development machine when we publish our ASP.NET application in the production server it is not required.
+
+- If we want some settings to apply in our application during production we mention them in appsettings.json file
+
+- appsettings.json file used for having environment variable
+	- goto appsettings.json
+	- appsettings.json>appsettings.Development.json> added "MyName":"Abhiraj Sardar"
+	- appsettings.json > added "MyName": "Abhiraj Sardar"
+	- goto program.cs
+     	- (optional) if you want you can add this code inside launchSettings.json under "IIS Express">"environmentVariables" for access in local machine only
+
+- wwwroot(Web Root) folder contains only static file (Images, Css, Js files)
+- to create a wwwroot folder we just create a folder and name it as 'wwwroot'
+
+- Default Files are added in wwwroot folder with the name of "index.html" only. and like app.UseStaticFiles() we use app.UseDefaultFiles()
+    
+
+## Different Project Template in C#
+
+### ASP.NET Core Empty Project Template
+
+- 📂Demo Project
+	- Connected Services
+	- Dependencies
+	- Properties
+	- appsettings.json
+	- Program.cs
+
+### ASP.NET Core Web App Project Template
+
+- 📂Demo Project
+	- Connected Services
+	- Dependencies
+	- Properties
+	- wwwroot
+	- Pages
+	- appsettings.json
+	- Program.cs
+
+### ASP.NET Core Web App (Model-View-Controller) Project Template
+
+- 📂Demo Project
+	- Connected Services
+	- Dependencies
+	- Properties
+	- wwwroot
+	- Controllers
+	- Models
+	- Views
+	- appsettings.json
+	- Program.cs
+
+### ASP.NET Core Web ApI Project Template
+
+- 📂Demo Project
+	- Connected Services
+	- Dependencies
+	- Properties
+	- Controllers
+	- appsettings.json
+	- Program.cs
+	- (optional) WeatherForecast.cs
